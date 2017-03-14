@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>日期控件</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	.riLi{
+		width: 802px;
+		height: 450px;
+		padding-top: 20px;
+		padding-left: 28px;
+		margin: 100px auto;
+		position: relative;
+		font-family: "微软雅黑";
+		overflow: hidden;
+		border: 1px solid #D3DCDD;
+		background: #F8F8F8;
+	}
+	.riLi .title{
+		font-size: 18px;
+		font-weight: bold;
+		float: left;
+		margin-left: 15px;
+		margin-top: 4px;
+	}
+	.riLi .nowDate{
+		width: 150px;
+		height: 30px;
+		border: 1px solid #4ECCC4;
+		margin-left: 50px;
+		outline: none;
+
+	}
+	.riLi .date_pick{
+		width: 510px;
+		overflow: hidden;
+		padding: 10px 0 10px 10px;
+		position: absolute;
+		top: 63px;
+		left: 120px;
+		display: none;
+		border: 1px solid #4ECCC4;
+		background: white;
+	}
+	.riLi .date_pick .select_date{
+		width: 500px;
+		height: 42px;
+		border-bottom: 1px solid #4ECCC4;
+	}
+	.riLi .date_pick .select_date .month{
+		width: 200px;
+		float: left;
+		margin-left: 10px;
+
+	}
+	.riLi .date_pick .select_date .year{
+		width: 200px;
+		float: left;
+		margin-left: 10px;
+	
+	}
+	
+	
+	.riLi .date_pick .select_date a{
+			
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			color: #4ECCC4;
+			text-align: center;
+			text-decoration: none;
+			font-family:Arial;
+			font-size: 12px;
+			border: 1px solid #d3dcdd;
+		
+		}
+		.riLi .date_pick .select_date a:hover{
+			color: white;
+			font-weight: bold;
+			background: #4ECCC4;
+		}
+		.riLi .date_pick .select_date  span{
+			display: inline-block;
+			width: 60px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 14px;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+	.riLi .date_pick  .date_week{
+		overflow: hidden;
+	}
+	.riLi .date_pick  .date_week dt{
+		float: left;
+		width: 72px;
+		height:66px;
+		line-height: 66px;
+		font-size: 14px;
+		text-align: center;
+	}
+	.riLi .date_pick  .date_week .date_day{
+		width: 498px;
+		border-top: 1px solid #d3dcdd;
+		border-left: 1px solid #d3dcdd;
+		overflow: hidden;
+
+	}
+	.riLi .date_pick  .date_week .date_day a{
+		display: block;
+		float: left;
+		width: 70px;
+		height: 30px;
+		border: 1px solid #d3dcdd;
+    	padding: 7px 0 6px;
+    	margin: -1px 0 0 -1px;
+    	line-height: 30px;
+    	text-align: center;
+    	font-size: 14px;
+    	font-weight: bold;
+    	color: #4B555B;
+    	text-decoration: none;
+	}
+	.riLi .date_pick  .date_week .date_day a.now:hover{
+		color: white;
+		background: #4ECCC4;
+	}
+	.riLi .date_pick  .date_week .date_day a.cur{
+		color: white;
+		font-weight: bold;
+		background: #4ECCC4;
+	}
+	.riLi .date_pick  .date_week .date_day a.now{
+		color:#565656;
+	}
+	.riLi .date_pick  .date_week .date_day a.other{
+		color: #CFCCD5;
+	}
+	</style>
+</head>
+<body>
+
+	<div class="riLi" id="riLi">
+		<div class="title">
+			日期 :
+		</div>
+		<input type="text" class="nowDate" id="nowDate" />
+		<div class="date_pick" id="date_pick">
+			<!-- <div class="select_date">
+				<div class="month">
+					<a href="javascript:;" class="preMonth">&lt;&lt;</a>
+					<span class="nowMoth">11月</span>
+					<a href="javascript:;" class="nextMonth">&gt;&gt;</a>
+				</div>
+				<div class="year">
+					<a href="javascript:;" class="preYear">&lt;&lt;</a>
+					<span class="nowYear">2016年</span>
+					<a href="javascript:;" class="nextYear">&gt;&gt;</a>
+				</div>
+			</div> -->
+			<!-- <dl class="date_week">
+				<dt>星期日</dt>
+				<dt>星期一</dt>
+				<dt>星期二</dt>
+				<dt>星期三</dt>
+				<dt>星期四</dt>
+				<dt>星期五</dt>
+				<dt>星期六</dt>
+				<dd class="date_day">
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+					<a href="javascript:;">12</a>
+				</dd>
+			</dl>
+			 -->
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript">
+//点击输入框 弹出日历
+	$(".nowDate").focus(function(){
+		$(".date_pick").show();
+	});
+	
+	$(document).click(function(event){
+		//兼容
+		event = event || window.event;
+    var target = event.target || event.srcElement;
+     if(event.target.id=="nowDate"){
+     	return;
+     }
+     $(".date_pick").hide();
+			
+	});
+	//阻止冒泡
+	$(".date_pick").click(function(event){
+		event.stopPropagation();
+	});
+	function Calendar(){		
+		//当前月
+		this.nowMonth=null;
+		//当前年
+		this.nowYear=null;
+		//当前天
+		this.nowDate=null;
+		//当前月的天数
+		this.totalDays=null;
+		//当前月的第一天是星期几
+		this.nowMonthOneday=null;
+		//计算当前年、当前月的上个月的总天数
+		this.preTotalDays=null;
+		//创建dom 日期选项栏
+		this.$dom=$("#date_pick");
+		this.$selectDate=null;
+		//月
+		this.$month=null;
+		this.$preMonth=null;
+		this.$nextMonth=null;
+		this.$nowMoth=null;
+		//年
+		this.$year=null;
+		this.$preYear=null;
+		this.$nextYear=null;
+		this.$nowYear=null;
+		this.$dateDay=null;
+		this.$dayLis=null;
+		//星期
+		this.$dateWeek=null;
+		//获得当前日期
+		this.getNowDate();
+		//获取当前月有多少天
+		this.getDates();
+		//获取当前月的第一天是星期几
+		this.getMonthOne();
+		//初始化页面
+		this.init();
+		//添加监听
+		this.bindEvent();
+
+	}
+	//获得当前日期
+	Calendar.prototype.getNowDate=function(){
+		var D=new Date();
+		this.nowMonth=D.getMonth();
+		this.nowYear=D.getFullYear();
+		this.nowDate=D.getDate();
+	};
+	//获取当前月有多少天
+	Calendar.prototype.getDates=function(M,y){
+		var D=new Date(y,M,1);
+		D.setMonth(M+1); 
+		D.setDate(0); 
+		return D.getDate();
+	}
+	//获取当前月的第一天是星期几
+	Calendar.prototype.getMonthOne=function(M,y){
+		
+		var D2=new Date(y,M,1)
+		return D2.getDay();
+	}
+	//星期几数组
+	var weekArray=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+	//初始化弹出日期页面
+	Calendar.prototype.init=function(){
+		//今天日期
+		var Da=new Date();
+		//弹出页面
+		this.$selectDate=$("<div class='select_date'></div>");
+		this.$selectDate.appendTo(this.$dom);
+		//当前月 month
+		
+		this.$month=$("<div class='month'></div>");
+		this.$month.appendTo(this.$selectDate);
+		this.$preMonth=$("<a href='javascript:;' class='preMonth'>&lt;&lt;</a>");
+		this.$nextMonth=$("<a href='javascript:;' class='nextMonth'>&gt;&gt;</a>");
+		this.$nowMoth=$("<span class='nowMoth'>"+(this.nowMonth+1)+"月</span>");
+		//上树
+		this.$preMonth.appendTo(this.$month);	
+		this.$nowMoth.appendTo(this.$month);
+		this.$nextMonth.appendTo(this.$month);
+
+		//当前年
+		this.$year=$("<div class='month'></div>");
+		this.$year.appendTo(this.$selectDate);
+		this.$preYear=$("<a href='javascript:;' class='preYear'>&lt;&lt;</a>");
+		this.$nextYear=$("<a href='javascript:;' class='nextYear'>&gt;&gt;</a>");
+		this.$nowYear=$("<span class='nowYear'>"+(this.nowYear)+"年</span>");
+		//上树
+		this.$preYear.appendTo(this.$year);
+		this.$nowYear.appendTo(this.$year);
+		this.$nextYear.appendTo(this.$year);
+
+		//星期几
+		this.$dateWeek=$("<dl class='date_week'></dl>");
+		//上树
+		this.$dateWeek.appendTo(this.$dom);
+		//固定星期上树
+		for(var i=0; i<weekArray.length;i++){
+			$("<dt>"+weekArray[i]+"</dt>").appendTo(this.$dateWeek);
+		}
+		//具体日历
+		this.$dateDay=$("<dd class='date_day'></dd>");
+		//上树
+		this.$dateDay.appendTo(this.$dateWeek);
+        //当前年、当前月总天数
+		this.totalDays=this.getDates(this.nowMonth,this.nowYear);
+		//计算当前年、当前月的上个月的总天数
+		this.preTotalDays=this.getDates(this.nowMonth-1,this.nowYear);
+		console.log(this.preTotalDays);
+		//当前年、当前月的第一天是星期几
+		this.nowMonthOneday=this.getMonthOne(this.nowMonth,this.nowYear);
+		//具体日期 几号是星期几 每月有几天
+		//如果当前月的第一天不是星期日 先把当月第一天前面多余的格子补上
+		if(this.nowMonthOneday!=0){
+			// 这月第一天是星期几 为0 值变为7
+			var nowMonthOneday= this.nowMonthOneday==0? 7:this.nowMonthOneday;
+			//日历第一项是上个月的第几号
+			var lastDays=this.preTotalDays-nowMonthOneday+1;
+			for(var i=0;i<this.nowMonthOneday;i++){
+
+				$("<a href='javascript:;' class='other'>"+lastDays+"</a>").appendTo(this.$dateDay);
+				lastDays++;
+			}
+		//如果是星期日的话 插入一行a标签 在开始插入日历
+		}else{
+			// 这月第一天是星期几 为0 值变为7
+			var nowMonthOneday= this.nowMonthOneday==0? 7:this.nowMonthOneday;
+			//日历第一项是上个月的第几号
+			var lastDays=this.preTotalDays-nowMonthOneday+1;
+			console.log(nowMonthOneday);
+			console.log(this.preTotalDays);
+			console.log(this.nowMonthOneday);
+			for(var p=0;p<7;p++){
+
+				$("<a href='javascript:;' class='other'>"+lastDays+"</a>").appendTo(this.$dateDay);
+				lastDays++;
+				
+			}
+		}
+		//循环追加当月日期
+		for(var k=0;k<this.totalDays;k++){
+			//如果是今年月份和年份
+			if(Da.getMonth()==this.nowMonth&&Da.getFullYear()==this.nowYear){
+				
+				//如果是今年今月今天则加cur类
+				if((k+1)==this.nowDate){
+					
+					$("<a href='javascript:;' class='cur'>"+ (k+1)+"</a>").appendTo(this.$dateDay);
+					//如果不是今天
+				}else{
+					$("<a href='javascript:;' class='now'>"+ (k+1)+"</a>").appendTo(this.$dateDay);
+				}
+			//如果不是今年今月
+			}else{
+				$("<a href='javascript:;' class='now'>"+ (k+1)+"</a>").appendTo(this.$dateDay);
+			}
+		}
+		//所有a标签
+		this.$dayLis=this.$dateDay.find("a");
+		//补后面的日期空白格
+		var dL=$(".date_day a").length;
+		var zLeng=42;
+		if(dL!=zLeng){
+			var nextDays=1;
+			for(var j=0;j<zLeng-dL;j++){
+  			$("<a href='javascript:;' class='other'>"+nextDays+"</a>").appendTo(this.$dateDay);
+  				nextDays++;
+			}
+
+		}
+
+	};
+	//添加监听
+	Calendar.prototype.bindEvent=function(){
+		//今天日期
+		var Da=new Date();
+		//备份this
+		var self=this;
+		//下个月按钮加监听
+		this.$nextMonth.click(function(){
+			//月份加1
+			self.nowMonth+=1;
+			// self.nowDate=1;
+			console.log(self.nowMonth);
+			if(self.nowMonth>11){
+				self.nowYear++;
+				self.nowMonth=0;
+			}
+
+			/*if(self.nowMonth==Da.getMonth()&&self.nowYear==Da.getFullYear()){
+				$(".date_day a").eq()
+			}*/
+			// $(".nowMoth").html((self.nowMonth+1)+"月");
+			// $(".nowYear").html(self.nowYear+"年");
+			//移除节点
+			self.$dateWeek.remove();
+			self.$selectDate.remove();
+			//初始化新节点
+			self.init();
+			//重新绑上监听
+			self.bindEvent();
+		});
+		//上个月按钮加监听
+		this.$preMonth.click(function(){
+			self.nowMonth-=1;
+			// self.nowDate=1;
+			if(self.nowMonth<0){
+				self.nowYear--;
+				self.nowMonth=11;
+			}
+			$(".nowMoth").html((self.nowMonth+1)+"月");
+			$(".nowYear").html(self.nowYear+"年");
+
+			//移除节点
+			self.$dateWeek.remove();
+			self.$selectDate.remove();
+			//初始化新节点
+			self.init();
+			//重新绑上监听
+			self.bindEvent();
+			
+			
+		});
+		//下一年按钮加监听
+		this.$nextYear.click(function(){
+			self.nowYear+=1;
+			// if(self.nowYear>20){
+			
+			//月份变为1月
+			self.nowMonth=0;
+			// }
+			$(".nowMoth").html((self.nowMonth+1)+"月");
+			$(".nowYear").html(self.nowYear+"年");
+			//移除节点
+			self.$dateWeek.remove();
+			self.$selectDate.remove();
+			//初始化新节点
+			self.init();
+			//重新绑上监听
+			self.bindEvent();
+			
+		});
+		//上一年按钮加监听
+		this.$preYear.click(function(){
+			//年份减1
+			self.nowYear-=1;
+			//月份变为1月
+			self.nowMonth=0;
+		
+			$(".nowMoth").html((self.nowMonth+1)+"月");
+			$(".nowYear").html(self.nowYear+"年");
+			//移除节点
+			self.$dateWeek.remove();
+			self.$selectDate.remove();
+			//初始化新节点
+			self.init();
+			//重新绑上监听
+			self.bindEvent();
+
+			
+		});
+		//给每个日期格子监听
+	this.$dayLis.each(function(i){
+		$(this).click(function(){
+			var chooseDate=new Date(self.nowYear,self.nowMonth,$(this).html());
+			var chooseNormalDate=getNowFormatDate(chooseDate);
+			$(".nowDate").val(chooseNormalDate);
+			//隐藏日期栏
+			$(".date_pick").hide();
+			//将日历还原为今年今月今日
+			self.nowMonth=Da.getMonth();
+			self.nowYear=Da.getFullYear();
+			self.nowDate=Da.getDate();
+			//移除节点
+			self.$dateWeek.remove();
+			self.$selectDate.remove();
+			//初始化新节点
+			self.init();
+			//重新绑上监听
+			self.bindEvent();
+			
+				
+		})
+		
+	});
+	}
+//将标准时间转换为yyyy-mm-dd格式---公共方法
+function getNowFormatDate(date) {
+    // var date = new Date();
+    var seperator1 = "-";
+    // var seperator2 = ":";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    /*var currentdate = year + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();*/
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}	
+//new对象
+	new Calendar();
+</script>
+</html>
